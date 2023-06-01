@@ -44,4 +44,8 @@ public class App {
         System.out.println("La palabra mas usada es: " + palabraMasUsada);
     }
 
+    public Object getGreeting() {
+        return null;
+    }
+
 }
