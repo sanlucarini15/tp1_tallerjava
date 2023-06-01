@@ -8,27 +8,27 @@ import java.util.*;
 public class App {
 
     public static String encontrarPalabraMasUsada (String texto, int N){
-        // Convertir el texto a minúsculas y dividirlo en palabras
+        // Convertimos el texto a minusculas y lo dividimos en palabras
         String[] palabras = texto.toLowerCase().split("[^a-zA-Z]+");
         
-        // Crear un mapa para realizar un seguimiento del recuento de palabras
-        Map<String, Integer> contadorPalabras = new HashMap<>();
+        // Creamos un mapa para realizar un seguimiento del recuento de palabras
+        Map<String, Integer> contadorPalabras = new HashMap<>(); //La clave es cada palabra que cumple con el requisito de longitud minima
         
-        // Contar la ocurrencia de cada palabra
+        // Contamos la ocurrencia de cada palabra
         for (String palabra : palabras) {
             if (palabra.length() >= N) {
                 contadorPalabras.put(palabra, contadorPalabras.getOrDefault(palabra, 0) + 1);
             }
         }
         
-        // Encontrar la palabra más usada
+        // Buscamos en el mapa la palabra más usada
         String palabraMasUsada = "";
         int maxCant = 0;
         
-        for (Map.Entry<String, Integer> entry : contadorPalabras.entrySet()) {
-            if (entry.getValue() > maxCant) {
-                palabraMasUsada = entry.getKey();
-                maxCant = entry.getValue();
+        for (Map.Entry<String, Integer> par : contadorPalabras.entrySet()) {
+            if (par.getValue() > maxCant) {
+                palabraMasUsada = par.getKey();
+                maxCant = par.getValue();
             }
         }
         
