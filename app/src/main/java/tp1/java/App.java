@@ -3,12 +3,45 @@
  */
 package tp1.java;
 
+import java.util.*;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+
+    public static String encontrarPalabraMasUsada (String texto, int N){
+        // Convertir el texto a minúsculas y dividirlo en palabras
+        String[] palabras = texto.toLowerCase().split("[^a-zA-Z]+");
+        
+        // Crear un mapa para realizar un seguimiento del recuento de palabras
+        Map<String, Integer> contadorPalabras = new HashMap<>();
+        
+        // Contar la ocurrencia de cada palabra
+        for (String palabra : palabras) {
+            if (palabra.length() >= N) {
+                contadorPalabras.put(palabra, contadorPalabras.getOrDefault(palabra, 0) + 1);
+            }
+        }
+        
+        // Encontrar la palabra más usada
+        String palabraMasUsada = "";
+        int maxCant = 0;
+        
+        for (Map.Entry<String, Integer> entry : contadorPalabras.entrySet()) {
+            if (entry.getValue() > maxCant) {
+                palabraMasUsada = entry.getKey();
+                maxCant = entry.getValue();
+            }
+        }
+        
+        return palabraMasUsada;
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        String text = "Hello world hello Java java hello World";
+        int n = 4;
+        
+        String palabraMasUsada = encontrarPalabraMasUsada(text, n);
+        
+        System.out.println("La palabra mas usada es: " + palabraMasUsada);
     }
+
 }
