@@ -3,9 +3,25 @@
  */
 package tp1.java;
 
+import java.math.BigInteger;
 import java.util.*;
 
 public class App {
+
+    public static BigInteger Fibonacci(int n) {
+    //Resolvemos utilizando programacion dinamica
+        BigInteger fib1 = BigInteger.ONE;   // Valor de Fibonacci para n-1
+        BigInteger fib2 = BigInteger.ONE;   // Valor de Fibonacci para n-2
+        BigInteger fibN = BigInteger.ZERO;  // Valor de Fibonacci para n
+        
+        for (int i = 2; i <= n; i++) {
+            fibN = fib1.add(fib2);
+            fib2 = fib1;
+            fib1 = fibN;
+        }
+        
+        return fibN;
+    }
 
     public static String encontrarPalabraMasUsada (String texto, int N){
         // Convertimos el texto a minusculas y lo dividimos en palabras
@@ -42,6 +58,11 @@ public class App {
         String palabraMasUsada = encontrarPalabraMasUsada(text, n);
         
         System.out.println("La palabra mas usada es: " + palabraMasUsada);
+
+        int nro = 90;
+
+        System.out.println("El Fibonacci de " + nro + " es " + Fibonacci(nro));
+
     }
 
     public Object getGreeting() {
